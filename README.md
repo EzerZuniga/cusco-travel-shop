@@ -8,7 +8,7 @@
 
 <hr>
 
-<h2>📦 Estructura del Proyecto</h2>
+<h2>Estructura del Proyecto</h2>
 <div>
   <h3>Frontend <span style="font-size:1em;">🌐</span></h3>
   <ul>
