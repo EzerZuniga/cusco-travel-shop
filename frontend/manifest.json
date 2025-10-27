@@ -1,0 +1,24 @@
+{
+    "name": "Turismo Cusco - Tours y Excursiones",
+    "short_name": "TurismoCusco",
+    "description": "Agencia de turismo especializada en tours por Cusco, Machu Picchu y Valle Sagrado",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0d6efd",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "assets/img/logo/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/img/logo/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["travel", "tourism"],
+    "lang": "es-PE"
+}

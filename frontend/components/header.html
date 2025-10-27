@@ -1,0 +1,17 @@
+<!-- Header Superior -->
+<div class="header-top bg-light py-2 border-bottom">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <span class="me-3"><i class="bi bi-telephone me-1"></i> +51 984 123 456</span>
+                <span><i class="bi bi-envelope me-1"></i> info@turismocusco.com</span>
+            </div>
+            <div>
+                <a href="#" class="text-decoration-none text-dark me-3"><i class="bi bi-currency-exchange me-1"></i> PEN</a>
+                <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="bi bi-person me-1"></i> Mi Cuenta
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

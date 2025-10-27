@@ -1,0 +1,2 @@
+<?php
+// Tour Model

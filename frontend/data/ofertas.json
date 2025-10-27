@@ -1,0 +1,22 @@
+{
+    "active": [
+        {
+            "id": 1,
+            "title": "Paquete Familiar",
+            "description": "Reserva para 4 personas y obtén 20% de descuento en todos nuestros tours.",
+            "discount": 20,
+            "type": "percentage",
+            "validUntil": "2024-12-31",
+            "code": "FAMILIA20"
+        },
+        {
+            "id": 2,
+            "title": "Tour Montaña 7 Colores 2x1",
+            "description": "Reserva ahora y lleva a un acompañante gratis en nuestro tour más popular.",
+            "discount": 50,
+            "type": "percentage",
+            "validUntil": "2024-11-30",
+            "code": "2X1COLORES"
+        }
+    ]
+}

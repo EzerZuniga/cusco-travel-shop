@@ -1,0 +1,3 @@
+-- Copia de seguridad de la base de datos
+-- Fecha: 2025-10-27
+-- Cusco Travel Shop Backup

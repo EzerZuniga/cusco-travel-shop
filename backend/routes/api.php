@@ -1,0 +1,2 @@
+<?php
+// API routes

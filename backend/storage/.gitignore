@@ -1,0 +1,3 @@
+# Evita que se suban archivos temporales y de caché
+*
+!.gitignore
