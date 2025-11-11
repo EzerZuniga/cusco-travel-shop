@@ -1,2 +1,0 @@
-<?php
-// Laravel entry point

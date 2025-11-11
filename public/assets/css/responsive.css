@@ -1,0 +1,120 @@
+@media (max-width: 576px) {
+    .hero-banner {
+        min-height: 60vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .search-main .row {
+        flex-direction: column;
+    }
+    
+    .search-main .col-md-2 {
+        margin-top: 1rem;
+    }
+    
+    .navbar-brand img {
+        height: 40px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .whatsapp-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Specific component adjustments */
+@media (max-width: 768px) {
+    .tour-card .card-body {
+        padding: 1rem;
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .timeline::before {
+        left: 10px;
+    }
+    
+    .timeline-year {
+        left: -1.5rem;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .timeline-content {
+        margin-left: 2rem;
+        padding: 1rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .footer,
+    .whatsapp-float {
+        display: none !important;
+    }
+    
+    .page-header {
+        margin-top: 0;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+}

@@ -1,2 +1,0 @@
--- Datos de ejemplo para testing
--- Cusco Travel Shop Test Data

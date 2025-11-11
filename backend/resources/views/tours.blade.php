@@ -1,1 +1,0 @@
-{{-- Vista de tours --}}

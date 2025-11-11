@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - TurismoCusco | Revisar y Reservar Tours</title>
+    <meta name="description" content="Revisa tu carrito de compras y completa la reserva de tus tours en Cusco. Proceso de compra seguro y confirmación inmediata.">
+    
+    <!-- SEO Metadatos -->
+    <meta name="keywords" content="carrito compras turismo cusco, reservar tours cusco, comprar tours online">
+    <meta name="author" content="TurismoCusco">
+    <meta name="robots" content="noindex, follow">
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/styles.css" rel="stylesheet">
+    <link href="/assets/css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="icon" href="/assets/img/logo/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Componentes -->
+    <div data-component="header"></div>
+    <div data-component="navbar"></div>
+
+    <!-- Page Header -->
+    <section class="page-header bg-primary text-white py-5 mt-5">
+        <div class="container">
+            <h1 class="display-4">Carrito de Compras</h1>
+            <p class="lead">Revisa y confirma tu reserva de tours</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Carrito Vacío -->
+            <div id="empty-cart-message" class="text-center py-5">
+                <div class="empty-cart-icon mb-4">
+                    <i class="bi bi-cart-x display-1 text-muted"></i>
+                </div>
+                <h3 class="mb-3">Tu carrito está vacío</h3>
+                <p class="text-muted mb-4">¡Descubre nuestros increíbles tours y comienza tu aventura en Cusco!</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+                    <a href="tours.html" class="btn btn-primary btn-lg">
+                        <i class="bi bi-compass me-2"></i>Ver Tours Disponibles
+                    </a>
+                    <a href="index.html" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-house me-2"></i>Ir al Inicio
+                    </a>
+                </div>
+                
+                <!-- Tours Recomendados -->
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <h4 class="mb-4">Tours Más Populares</h4>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card tour-card-mini h-100">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Machu Picchu Full Day</h6>
+                                <p class="text-primary fw-bold">$350 USD</p>
+                                <button class="btn btn-primary btn-sm" onclick="addDemoTour(1)">
+                                    <i class="bi bi-cart-plus me-1"></i>Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card tour-card-mini h-100">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Valle Sagrado</h6>
+                                <p class="text-primary fw-bold">$120 USD</p>
+                                <button class="btn btn-primary btn-sm" onclick="addDemoTour(2)">
+                                    <i class="bi bi-cart-plus me-1"></i>Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card tour-card-mini h-100">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Montaña de 7 Colores</h6>
+                                <p class="text-primary fw-bold">$65 USD</p>
+                                <button class="btn btn-primary btn-sm" onclick="addDemoTour(3)">
+                                    <i class="bi bi-cart-plus me-1"></i>Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contenido del Carrito -->
+            <div id="cart-content" class="d-none">
+                <div class="row">
+                    <!-- Lista de Tours -->
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0"><i class="bi bi-cart-check me-2 text-primary"></i>Tours Seleccionados</h4>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="ShoppingCart.clearCart()">
+                                        <i class="bi bi-trash me-1"></i>Vaciar Carrito
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="cart-items">
+                                    <!-- Los items del carrito se cargarán dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cupones de Descuento -->
+                        <div class="card shadow-sm mt-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0"><i class="bi bi-ticket-perforated me-2 text-success"></i>Cupón de Descuento</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row align-items-end">
+                                    <div class="col-md-8">
+                                        <label for="coupon-code" class="form-label">Código de cupón</label>
+                                        <input type="text" class="form-control" id="coupon-code" placeholder="Ingresa tu código de descuento">
+                                        <small class="text-muted">Ejemplo: BIENVENIDO10, VERANO25</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success w-100" onclick="ShoppingCart.applyCoupon()">
+                                            <i class="bi bi-check-circle me-1"></i>Aplicar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="coupon-message" class="mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resumen de Compra -->
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm sticky-top" style="top: 100px;">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0"><i class="bi bi-calculator me-2"></i>Resumen de Compra</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="order-summary">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Subtotal:</span>
+                                        <span id="cart-subtotal">$0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2" id="discount-row" style="display: none;">
+                                        <span class="text-success">Descuento:</span>
+                                        <span class="text-success" id="cart-discount">-$0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>IGV (18%):</span>
+                                        <span id="cart-taxes">$0.00</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <strong class="h5">Total:</strong>
+                                        <strong class="h5 text-primary" id="cart-total">$0.00</strong>
+                                    </div>
+                                    
+                                    <button id="proceed-checkout-btn" class="btn btn-primary w-100 btn-lg mb-2" onclick="ShoppingCart.startCheckout()">
+                                        <i class="bi bi-credit-card me-2"></i>Proceder al Pago
+                                    </button>
+                                    <a href="tours.html" class="btn btn-outline-primary w-100">
+                                        <i class="bi bi-plus-circle me-2"></i>Seguir Comprando
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title"><i class="bi bi-credit-card me-2"></i>Finalizar Reserva</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="checkout-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="checkout-name" class="form-label">Nombre Completo *</label>
+                                <input type="text" class="form-control" id="checkout-name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="checkout-email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="checkout-email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="checkout-phone" class="form-label">Teléfono *</label>
+                                <input type="tel" class="form-control" id="checkout-phone" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="checkout-date" class="form-label">Fecha del Tour *</label>
+                                <input type="date" class="form-control" id="checkout-date" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="checkout-notes" class="form-label">Notas Adicionales</label>
+                            <textarea class="form-control" id="checkout-notes" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" onclick="ShoppingCart.confirmPurchase()">
+                        <i class="bi bi-check-circle me-1"></i>Confirmar Reserva
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Componentes Footer y Modals -->
+    <div data-component="footer"></div>
+    <div data-component="modals"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/utils/storage.js"></script>
+    <script src="/utils/helpers.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/cart.js"></script>
+    
+    <script>
+        // Función para agregar tours de demostración
+        function addDemoTour(tourId) {
+            const demoTours = {
+                1: {
+                    id: 1,
+                    name: "Machu Picchu Full Day",
+                    price: 350,
+                    image: "assets/img/tours/machu-picchu-1.jpg",
+                    category: "Arqueológico",
+                    duration: "1 día completo"
+                },
+                2: {
+                    id: 2,
+                    name: "Valle Sagrado de los Incas",
+                    price: 120,
+                    image: "assets/img/tours/valle-sagrado-1.jpg",
+                    category: "Cultural",
+                    duration: "1 día completo"
+                },
+                3: {
+                    id: 3,
+                    name: "Montaña de 7 Colores",
+                    price: 65,
+                    image: "assets/img/tours/7-colores-1.jpg",
+                    category: "Aventura",
+                    duration: "1 día completo"
+                }
+            };
+
+            const tour = demoTours[tourId];
+            if (tour && window.TurismoCuscoApp) {
+                TurismoCuscoApp.addToCart(tour);
+                // Forzar actualización del carrito
+                if (window.ShoppingCart) {
+                    ShoppingCart.refreshCart();
+                }
+            }
+        }
+
+        // Inicializar carrito cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar estado del carrito
+            if (window.TurismoCuscoApp && TurismoCuscoApp.getCartItems().length === 0) {
+                document.getElementById('empty-cart-message').classList.remove('d-none');
+                document.getElementById('cart-content').classList.add('d-none');
+            } else {
+                document.getElementById('empty-cart-message').classList.add('d-none');
+                document.getElementById('cart-content').classList.remove('d-none');
+            }
+        });
+    </script>
+</body>
+</html>

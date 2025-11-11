@@ -1,2 +1,0 @@
-<?php
-// Usuario Model

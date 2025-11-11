@@ -2,7 +2,7 @@
 
 <h1 align="center">Cusco Travel Shop</h1>
 <p align="center">
-  <img src="https://img.icons8.com/color/96/000000/peru.png" alt="Perú"/>
+  <img src="https://cdn.trustindex.io/companies/0a/0a0bc9198231g1e4/avatar.jpg" alt="Perú"/>
 </p>
 <p align="center"><strong>Tienda de turismo en Cusco</strong><br>Sistema completo de reservas y tours</p>
 
@@ -114,3 +114,13 @@
 <p align="center">
   <b>Desarrollado por EzerZuniga &copy; 2025</b>
 </p>
+
+## Migración de estructura (automatizada)
+
+Se realizó una reorganización del proyecto para seguir una estructura tipo Laravel:
+
+- Copia de seguridad: `cusco-travel-shop-backup/` creada en la misma carpeta raíz.
+- Carpetas creadas/actualizadas: `app/`, `config/`, `database/`, `public/assets/`, `resources/views/`, `routes/`, `storage/`.
+- Se movieron controladores, modelos, vistas y assets reutilizando el código existente. No se eliminaron los originales; revisa `backend/` y `frontend/` si necesitas recuperar algo.
+
+Si algo quedó mal o quieres revertir, puedes restaurar desde la copia de seguridad.
