@@ -1,12 +1,46 @@
 <?php
-// TourApiController (stub)
 
 namespace App\Http\Controllers\Api;
 
-class TourApiController
+use App\Http\Controllers\Controller;
+use App\Models\Tour;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class TourApiController extends Controller
 {
-    public function index()
+    /**
+     * Listar todos los tours activos
+     */
+    public function index(): JsonResponse
     {
-        // ...existing code...
+        $tours = Tour::where('activo', true)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $tours
+        ]);
+    }
+
+    /**
+     * Mostrar un tour específico
+     */
+    public function show(int $id): JsonResponse
+    {
+        $tour = Tour::where('activo', true)->find($id);
+
+        if (!$tour) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tour no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $tour
+        ]);
     }
 }

@@ -11,7 +11,8 @@ Route::get('/ping', function () {
 Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
 
 // Contact
-Route::get('/contacto', [\App\Http\Controllers\Web\ContactoController::class, 'send'])->name('contacto.send');
+Route::get('/contacto', [\App\Http\Controllers\Web\ContactoController::class, 'index'])->name('contacto.index');
+Route::post('/contacto', [\App\Http\Controllers\Web\ContactoController::class, 'send'])->name('contacto.send');
 
 // Tours (example)
 Route::get('/tours', [\App\Http\Controllers\Web\TourController::class, 'index'])->name('tours.index');
