@@ -3,7 +3,7 @@
         'name' => 'cusco-travel-shop/backend',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'adbc7e45ba0bb3e73c41dab5f8652d43d05c3331',
+        'reference' => '3a2106f0f690d044a4d512238e10bbbb62401527',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'cusco-travel-shop/backend' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'adbc7e45ba0bb3e73c41dab5f8652d43d05c3331',
+            'reference' => '3a2106f0f690d044a4d512238e10bbbb62401527',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
