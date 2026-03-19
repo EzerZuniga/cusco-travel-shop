@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Listar todos los usuarios
-     */
+
     public function index()
     {
         $usuarios = Usuario::withCount('reservas')
@@ -20,18 +18,12 @@ class UsuarioController extends Controller
         return view('admin.usuarios', compact('usuarios'));
     }
 
-    /**
-     * Mostrar un usuario específico
-     */
     public function show(int $id)
     {
         $usuario = Usuario::with('reservas.tour')->findOrFail($id);
         return view('admin.usuario.show', compact('usuario'));
     }
 
-    /**
-     * Actualizar un usuario
-     */
     public function update(Request $request, int $id)
     {
         $usuario = Usuario::findOrFail($id);
@@ -40,6 +32,8 @@ class UsuarioController extends Controller
             'nombre' => 'sometimes|required|string|max:255',
             'email' => 'sometimes|required|email|unique:usuarios,email,' . $id,
             'telefono' => 'nullable|string|max:20',
+            'is_admin' => 'sometimes|boolean',
+            'rol' => 'nullable|string|max:50',
         ]);
 
         $usuario->update($validated);
@@ -48,9 +42,6 @@ class UsuarioController extends Controller
             ->with('success', 'Usuario actualizado correctamente');
     }
 
-    /**
-     * Eliminar un usuario
-     */
     public function destroy(int $id)
     {
         $usuario = Usuario::findOrFail($id);

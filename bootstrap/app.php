@@ -2,16 +2,14 @@
 
 use Illuminate\Foundation\Application;
 
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
-|
-*/
+/**
+ * Bootstrap del framework
+ *
+ * Este archivo crea la instancia de la aplicación (IoC container) y
+ * liga las implementaciones concretas de los Kernels y del manejador
+ * de excepciones. Es un archivo estándar de Laravel y no suele requerir
+ * cambios manuales; añadimos comentarios en español para claridad.
+ */
 
 $app = new Application(
     dirname(__DIR__)
@@ -22,9 +20,11 @@ $app = new Application(
 | Bind Important Interfaces
 |--------------------------------------------------------------------------
 |
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
+| Se enlazan las interfaces más importantes con sus implementaciones
+| concretas para que el contenedor pueda resolverlas cuando se necesiten.
+| Estas clases deberían existir en `app/Http/Kernel.php`, `app/Console/Kernel.php`
+| y `app/Exceptions/Handler.php`. Si alguna faltase, el arranque puede fallar,
+| por lo que es recomendable ejecutar migraciones/instalación de dependencias.
 |
 */
 

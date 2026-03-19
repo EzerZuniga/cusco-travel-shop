@@ -8,6 +8,32 @@ use Illuminate\Support\Str;
 
 class TourSeeder extends Seeder
 {
+    public function run()
+    {
+        $tours = [
+            ['titulo' => 'City Tour Cusco', 'descripcion' => 'Recorrido por la ciudad de Cusco y sus sitios principales.', 'precio' => 35.00, 'duracion' => '4 horas'],
+            ['titulo' => 'Valle Sagrado', 'descripcion' => 'Excursión completa por el Valle Sagrado de los Incas.', 'precio' => 75.00, 'duracion' => '1 día'],
+            ['titulo' => 'Machu Picchu (1 día)', 'descripcion' => 'Visita a la ciudadela de Machu Picchu en un día.', 'precio' => 150.00, 'duracion' => '1 día'],
+        ];
+
+        foreach ($tours as $data) {
+            Tour::updateOrCreate(
+                ['slug' => Str::slug($data['titulo'])],
+                array_merge($data, ['activo' => true])
+            );
+        }
+    }
+}
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Tour;
+use Illuminate\Support\Str;
+
+class TourSeeder extends Seeder
+{
     /**
      * Ejecutar los seeders de la base de datoss
      */

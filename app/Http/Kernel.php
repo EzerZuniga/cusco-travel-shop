@@ -31,10 +31,13 @@ class Kernel extends HttpKernel
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            // Protección CSRF para formularios web
+            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
+            // Límite por defecto para rutas API (usa el rate limiter 'api' configurado)
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -51,5 +54,14 @@ class Kernel extends HttpKernel
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        // Alias comunes usados en rutas y controladores
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ];
 }

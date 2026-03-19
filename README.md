@@ -10,15 +10,12 @@
 
 <h2>Estructura del Proyecto</h2>
 <div>
-  <h3>Frontend <span style="font-size:1em;">🌐</span></h3>
-  <ul>
-    <li><b>pages/</b>: Páginas principales (index, tours, about, blog, gallery, carrito, contact)</li>
-    <li><b>components/</b>: Componentes reutilizables (header, footer, navbar, modals)</li>
-    <li><b>assets/</b>: Recursos estáticos (CSS, JS, imágenes, fuentes, iconos)</li>
-    <li><b>data/</b>: Datos de prueba en formato JSON</li>
-    <li><b>utils/</b>: Funciones utilitarias y helpers</li>
-    <li><b>vendor/</b>: Librerías externas (AOS, Swiper)</li>
-  </ul>
+  <h3>Vistas (Blade) <span style="font-size:1em;">🌐</span></h3>
+    <ul>
+      <li><b>resources/views/pages/</b>: Páginas principales (index, tours, blog, contacto)</li>
+      <li><b>resources/views/components/</b>: Componentes reutilizables (header, footer, navbar, modals)</li>
+      <li><b>public/assets/</b>: Recursos estáticos (CSS, JS, imágenes, fuentes, iconos)</li>
+    </ul>
 
   <h3>Backend <span style="font-size:1em;">🛠️</span></h3>
   <ul>
@@ -41,19 +38,12 @@
 
 <h2>🚀 Tecnologías Utilizadas</h2>
 <div>
-  <h3>Frontend</h3>
+  <h3>Stack</h3>
   <ul>
-    <li>HTML5, CSS3, JavaScript (ES6+)</li>
-    <li>Bootstrap 5</li>
-    <li>AOS (Animate On Scroll)</li>
-    <li>Swiper (Carruseles)</li>
-  </ul>
-  <h3>Backend</h3>
-  <ul>
-    <li>Laravel 10</li>
-    <li>PHP 8.1+</li>
+    <li>Laravel 10 (Blade templates)</li>
+    <li>PHP 8.2+</li>
     <li>MySQL</li>
-    <li>RESTful API</li>
+    <li>Bootstrap 5 + JS en <code>public/assets</code></li>
   </ul>
 </div>
 
@@ -61,20 +51,11 @@
 
 <h2>📝 Instalación y Configuración</h2>
 <div>
-  <h3>Frontend</h3>
+  <h3>Aplicación Laravel</h3>
   <pre>
     <code>
-      cd frontend
-      npm install
-      npm run dev
-    </code>
-  </pre>
-  <h3>Backend</h3>
-  <pre>
-    <code>
-      cd backend
+      cd cusco-travel-shop
       composer install
-      cp .env.example .env
       php artisan key:generate
       php artisan migrate --seed
       php artisan serve
@@ -115,12 +96,8 @@
   <b>Desarrollado por EzerZuniga &copy; 2025</b>
 </p>
 
-## Migración de estructura (automatizada)
+## Notas de mantenimiento
 
-Se realizó una reorganización del proyecto para seguir una estructura tipo Laravel:
-
-- Copia de seguridad: `cusco-travel-shop-backup/` creada en la misma carpeta raíz.
-- Carpetas creadas/actualizadas: `app/`, `config/`, `database/`, `public/assets/`, `resources/views/`, `routes/`, `storage/`.
-- Se movieron controladores, modelos, vistas y assets reutilizando el código existente. No se eliminaron los originales; revisa `backend/` y `frontend/` si necesitas recuperar algo.
-
-Si algo quedó mal o quieres revertir, puedes restaurar desde la copia de seguridad.
+- El proyecto se ha simplificado para usar únicamente Laravel + Blade.
+- Se eliminó la toolchain de Node (package.json, node_modules) y migraciones duplicadas vacías.
+- Los assets se sirven desde `public/assets`. Si deseas usar Vite/Mix en el futuro, podemos configurarlo y mover los assets a `resources/`.

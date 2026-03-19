@@ -1,0 +1,65 @@
+# Composer
+/vendor/
+/composer.lock
+
+# Node
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Laravel specific
+/public/hot
+/public/storage
+/storage/*.key
+/storage/debugbar
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/logs
+/storage/oauth-private.key
+/storage/oauth-public.key
+
+# Bootstrap cache (compiled files)
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+
+# Database
+/database/database.sqlite
+/database/*.sqlite
+
+# Environment files
+/.env
+/.env.*
+!.env.example
+
+# IDE / Editor files
+/.idea/
+/.vscode/
+/.history/
+/.phpstorm.meta.php
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Build artifacts
+/public/mix-manifest.json
+/public/build
+
+# Misc
+.sass-cache/
+.cache/
+.parcel-cache/
+.phpunit.result.cache
+.php_cs.cache
+
+# Homestead
+/Homestead.json
+/Homestead.yaml

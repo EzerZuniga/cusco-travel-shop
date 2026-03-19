@@ -6,22 +6,60 @@ use App\Http\Controllers\Controller;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class TourApiController extends Controller
 {
     /**
      * Listar todos los tours activos
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $tours = Tour::where('activo', true)
-            ->orderBy('created_at', 'desc')
-            ->get();
+        try {
+            $query = Tour::query();
 
-        return response()->json([
-            'success' => true,
-            'data' => $tours
-        ]);
+            // Filtrar por estado activo (por defecto true)
+            if ($request->has('activo')) {
+                $activo = filter_var($request->activo, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+                if (!is_null($activo)) {
+                    $query->where('activo', $activo);
+                }
+            } else {
+                $query->where('activo', true);
+            }
+
+            // Búsqueda simple por título o descripción
+            if ($search = $request->input('q')) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('titulo', 'like', "%{$search}%")
+                      ->orWhere('descripcion', 'like', "%{$search}%");
+                });
+            }
+
+            // Ordenamiento seguro
+            $allowedSort = ['created_at', 'precio', 'titulo'];
+            $sortBy = $request->input('sort_by', 'created_at');
+            $order = strtolower($request->input('order', 'desc')) === 'asc' ? 'asc' : 'desc';
+            if (!in_array($sortBy, $allowedSort)) {
+                $sortBy = 'created_at';
+            }
+
+            $query->orderBy($sortBy, $order);
+
+            // Paginación (per_page puede ser 'all')
+            if ($request->filled('per_page') && $request->per_page === 'all') {
+                $tours = $query->get();
+                return response()->json(['success' => true, 'data' => $tours]);
+            }
+
+            $perPage = (int) $request->input('per_page', 15);
+            $tours = $query->paginate(max(1, $perPage))->appends($request->query());
+
+            return response()->json(['success' => true, 'data' => $tours]);
+        } catch (\Throwable $e) {
+            Log::error('Error obteniendo tours: ' . $e->getMessage(), ['request' => $request->all()]);
+            return response()->json(['success' => false, 'message' => 'Error interno'], 500);
+        }
     }
 
     /**
@@ -29,18 +67,17 @@ class TourApiController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $tour = Tour::where('activo', true)->find($id);
+        try {
+            $tour = Tour::where('activo', true)->find($id);
 
-        if (!$tour) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Tour no encontrado'
-            ], 404);
+            if (!$tour) {
+                return response()->json(['success' => false, 'message' => 'Tour no encontrado'], 404);
+            }
+
+            return response()->json(['success' => true, 'data' => $tour]);
+        } catch (\Throwable $e) {
+            Log::error('Error mostrando tour: ' . $e->getMessage(), ['id' => $id]);
+            return response()->json(['success' => false, 'message' => 'Error interno'], 500);
         }
-
-        return response()->json([
-            'success' => true,
-            'data' => $tour
-        ]);
     }
 }
